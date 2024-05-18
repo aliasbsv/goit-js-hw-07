@@ -1,83 +1,48 @@
-class Storage {
-  #items;
-  constructor(items)
+console.log("*************** Task 2 ***************");
+const images = [
   {
-    this.#items = items;
+    url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260",
+    alt: "White and Black Long Fur Cat",
+  },
+  {
+    url: "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?dpr=2&h=750&w=1260",
+    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
+  },
+  {
+    url: "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?dpr=2&h=750&w=1260",
+    alt: "Group of Horses Running",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg",
+    alt: "Alpine Spring Meadows",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg",
+    alt: "Nature Landscape",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg",
+    alt: "Lighthouse Coast Sea",
   }
+];
 
-  getItems() {
-    return this.#items;
-  }
 
-  addItem(newItem) {
-    this.#items.push(newItem);
-  }
+ const ulElem = document.querySelector('.gallery');
 
-  removeItem(itemToRemove) {
-    this.#items = this.#items.filter(item => item !== itemToRemove);
-  }
+function imageTemplate(imageObj) { 
+  return `<li class="gallery-item">
+        <img
+          src="${imageObj.url}"
+          alt="${imageObj.alt}"
+          width="360"
+          height="300"
+        />
+      </li>`;
 }
 
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-
-
-console.log('****** TASK 2 ****** ');
-
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
-
- storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
-
-storage.removeItem("Scaner");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
- 
-/* 
-************** 2 Variant *****************
-
-class Storage {
-  #items = [];
-  constructor(items)
-  {
-    this.#items = items;
-  }
-
-  getItems() {
-    return this.#items;
-  }
-
-  addItem(newItem) {
-    this.#items.push(newItem);
-  }
-
-  removeItem(itemToRemove) {
-    const index = this.#items.indexOf(itemToRemove);
-    if (index !== -1) {
-      this.#items.splice(index, 1);
-    } else {
-      console.log(`"${itemToRemove}" not found :-( `);
-    }
-  }
+function imagesTemplate(arr) { 
+  return arr.map(imageTemplate).join ('\n');
 }
 
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-
-
-console.log('****** TASK 2 ****** ');
-
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
-
- storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
-
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
-
-storage.removeItem("Scaner");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
- */
-
-
-
+const markup = imagesTemplate(images);
+ulElem.innerHTML = markup; 
